@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;}
+        .cube-container{
+            position: relative;
+            width: 30rem;
+            height: 30rem;
+            margin: 5rem auto 6rem;
+            perspective: 100rem;
+        }
+        .cube img{width: 60%;height: 60%;}
+        .cube{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.32,0.05,0.35,1.6);
+        }
+        .cube-face-image{
+            display: block;
+            position: absolute;
+        }
+        .image-buttons{
+            display: grid;
+            grid-template-columns: repeat(3,auto);
+            grid-gap: 1.5rem;
+            justify-content: center;
+        }
+        .image-buttons input{
+            border: 0.2rem solid #fafafa;
+        }
+        .image-buttons input:focus{
+            outline: none;
+        }
+        .image-1{
+            transform: translateZ(15rem);
+        }
+        .image-2{
+            transform: rotateX(-180deg) translateZ(15rem);
+        }
+        .image-3{
+            transform: rotateY(90deg) translateZ(15rem);
+        }
+        .image-4{
+            transform: rotateY(-90deg) translateZ(15rem);
+        }
+        .image-5{
+            transform: rotateX(90deg) translateZ(15rem);
+        }
+        .image-6{
+            transform: rotateX(-90deg) translateZ(15rem);
+        }
+        .cube.initial-position{
+            transform: translateZ(-15rem) translateY(-2rem)
+            rotateX(-15deg) rotateY(18deg) rotateZ(2deg);
+        }
+        .cube.show-image-1{transform: translateZ(-15rem);}
+        .cube.show-image-2{transform: translateZ(-15rem) rotateX(180deg);}
+        .cube.show-image-3{transform: translateZ(-15rem) rotateY(-90deg);}
+        .cube.show-image-4{transform: translateZ(-15rem) rotateY(90deg);}
+        .cube.show-image-5{transform: translateZ(-15rem) rotateX(-90deg);}
+        .cube.show-image-6{transform: translateZ(-15rem) rotateX(90deg);}
+    </style>
+</head>
+<body>
+    <div class="cube-container">
+        <div class="cube initial-position">
+            <img class="cube-face-image image-1" src="../img/ting1.png" alt="">
+            <img class="cube-face-image image-2" src="../img/ting2.png" alt="">
+            <img class="cube-face-image image-3" src="../img/ting3.png" alt="">
+            <img class="cube-face-image image-4" src="../img/ting4.png" alt="">
+            <img class="cube-face-image image-5" src="../img/ting5.png" alt="">
+            <img class="cube-face-image image-6" src="../img/ting6.png" alt="">
+        </div>
+    </div>
+
+    <div class="image-buttons">
+        <input type="image" class="show-image-1" src="../img/ting1-1.png">
+        <input type="image" class="show-image-2" src="../img/ting2-1.png">
+        <input type="image" class="show-image-3" src="../img/ting3-1.png">
+        <input type="image" class="show-image-4" src="../img/ting4-1.png">
+        <input type="image" class="show-image-5" src="../img/ting5-1.png">
+        <input type="image" class="show-image-6" src="../img/ting6-1.png">
+    </div>
+
+    <script>
+        "use strict";
+
+         window.addEventListener("DOMContentLoaded",
+         function(){
+             var cube = document.querySelector(".cube"),
+             imageButtons = document.querySelector(".image-buttons");
+
+             var cubeImageClass = cube.classList[1];
+             imageButtons.addEventListener("click",function(e){
+                 var targetNode = e.target.nodeName,
+                 targetClass = e.target.className;
+                 if(targetNode === "INPUT" && targetClass !== cubeImageClass){
+                     console.log("Show Image:".concat(targetClass.charAt(11)));
+
+                     cube.classList.replace(cubeImageClass,targetClass);
+
+                     cubeImageClass = targetClass;
+                 }
+             })
+         })
+    </script>
+</body>
+</html>

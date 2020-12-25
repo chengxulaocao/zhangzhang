@@ -1,0 +1,145 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/css.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid border border-muted border-top-0">
+            <div class="container">
+                <div class="d-flex pt-3">
+                    <!-- 导航栏logo -->
+                    <div>
+                        <img src="img/logo.png">
+                    </div>
+                    <!-- 导航栏 发现 -->
+                    <ul class="d-flex list-unstyled ml-5">
+                        <li class="mt-2 border border-warning border-top-0 border-left-0 border-right-0"><a class="h5 text-dark" href="#">发现</a></li>
+                        <li class="ml-5 mt-2"><a class="text-muted " href="#">我的</a></li>
+                        <li class="ml-5 mt-2"><a class="text-muted" href="#">APP下载</a></li>
+                    </ul>
+                    <!-- 导航栏搜索框 -->
+                    <div class="d-flex ">
+                        <span></span>
+                        <input type="text" placeholder="专辑/声音/用户">
+                        <button class="btn btn-primary">搜索</button>
+                    </div>
+                    <!-- 导航栏 上传-->
+                    <ul class="list-unstyled d-flex my-2 ">
+                        <li><a class="ml-3 text-muted ul_a" href="#">上传</a></li>
+                        <li><a class="ml-3 text-muted ul_a" href="#">创作中心</a></li>
+                        <li><a class="ml-3 text-muted ul_a" href="#">有声版权</a></li>
+                    </ul>
+                </div>
+                <!-- 轮播图 -->
+                <div id="lunbo">
+                    <!-- 图片 -->
+                    <ul class="list-unstyled" id="ul_1">
+                        <li><img src="img/0.png"></li>
+                        <li><img src="img/1.png"></li>
+                        <li><img src="img/2.png"></li>
+                        <li><img src="img/3.png"></li>
+                        <li><img src="img/4.png"></li>
+                        <li><img src="img/5.png"></li>
+                        <li><img src="img/6.png"></li>
+                        <li><img src="img/7.png"></li>
+                        <li><img src="img/8.png"></li>
+                        <li><img src="img/9.png"></li>
+                    </ul>
+                    <!-- 按钮 -->
+                    <button id="left_button" class="left_button z_index">&lt;</button>
+                    <button id="right_button" class="right_button z_index">&gt;</button>
+                    <!-- 小圆点数字 -->
+                    <ul class="list-unstyled d-flex z_index" id="ul_2">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                    </ul>
+                    <!-- 引入JS代码 -->
+                    <script src="js/index.js"></script>
+                </div>
+                <!-- 选你喜欢 -->
+                <div class="cube-container">
+                    <div class="cube initial-position">
+                        <img class="cube-face-image image-1" src="img/ting1.png" alt="">
+                        <img class="cube-face-image image-2" src="img/ting2.png" alt="">
+                        <img class="cube-face-image image-3" src="img/ting3.png" alt="">
+                        <img class="cube-face-image image-4" src="img/ting4.png" alt="">
+                        <img class="cube-face-image image-5" src="img/ting5.png" alt="">
+                        <img class="cube-face-image image-6" src="img/ting6.png" alt="">
+                    </div>
+                </div>
+                <div class="xuanni">选你喜欢:</div>
+                <div class="image-buttons">
+                    <!-- <input type="image" /> 定义图像形式的提交按钮 -->
+                    <input type="image" class="show-image-1" src="img/ting1-1.png">
+                    <input type="image" class="show-image-2" src="img/ting2-1.png">
+                    <input type="image" class="show-image-3" src="img/ting3-1.png">
+                    <input type="image" class="show-image-4" src="img/ting4-1.png">
+                    <input type="image" class="show-image-5" src="img/ting5-1.png">
+                    <input type="image" class="show-image-6" src="img/ting6-1.png">
+                </div>
+            
+                <script>
+                    // 严格模式
+                    "use strict";
+                    // DOMContentLoaded这个事件，就是要在大多数情况下去替代window.onload事件
+                    // 因为window.onload事件必须要等待页面所有元素的资源都下载完毕时才触发
+                    // addEventListener()方法将事件处理程序附加到指定的元素，第一个参数是事件的类型
+                    // 第二个参数是我们想要在事件发生的时候调用的函数
+                     window.addEventListener("DOMContentLoaded",
+                     function(){
+                        //  获取魔方盒子和点击图片的盒子 
+                         var cube = document.querySelector(".cube"),
+                         imageButtons = document.querySelector(".image-buttons");
+            
+                         var cubeImageClass = cube.classList[1];
+						 //console.log(cub.classList);
+                        //  图片按钮监听点击事件，点击了执行下面的函数
+                        // function中的参数是e事件，e.target.nodeName返回的是大写字母“INPUT”
+                         imageButtons.addEventListener("click",function(e){
+                             var targetNode = e.target.nodeName,
+                             targetClass = e.target.className;
+                            //  如果当前图片
+                             if(targetNode === "INPUT" && targetClass !== cubeImageClass){
+                                //  console.log("Show Image:".concat(targetClass.charAt(11)));
+                                // replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串
+                                // 是用 targetClass 替换了cubeImageClass的匹配之后得到的
+                                 cube.classList.replace(cubeImageClass,targetClass);
+            
+                                 cubeImageClass = targetClass;
+                             }
+                         })
+                     })
+                </script> 
+            </div>
+        </div>
+                <!-- 底部样式           -->
+                <footer class="d">
+                    <p>喜马拉雅是专业的音频分享平台，汇集了有声小说、有声读物、有声书、儿童睡前故事、相声小品、鬼故事等数亿条音频。随时随地，听我想听。</p>
+                    <p>地址：上海市浦东新区张江丹桂路799号国创中心三期1-2号楼  客服热线：400-838-5616  举报电话：400-838-5616  《举报受理和处置管理办法》</p>
+                    <p>Copyright © 2012-2020 www.ximalaya.com lnc.ALL Rights Reserved</p>
+                    <div>
+                        <ul>
+                            <li><a href="#">关于我们</a></li>
+                            <li><a href="#">联系我们</a></li>
+                            <li><a href="#">招贤纳士</a></li>
+                            <li><a href="#">版权声明</a></li>
+                            <li><a href="#">直播平台</a></li>
+                        </ul>
+                    </div>
+                </footer>
+    </body>
+</html>
